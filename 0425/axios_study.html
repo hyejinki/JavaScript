@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>클릭 시 고양이 가져옴</button>
+
+    <script>
+        const catApiURL = "https://api.thecatapi.com/v1/images/search"
+        const btn = document.querySelector('button')
+        btn.addEventListener('click', function() {
+            axios.get(catApiURL)
+            .then((res) => {
+                // console.log(res)
+                const imgURL = res.data[0].url
+                // console.log(img_url)
+                const imgElement = document.createElement('img')
+                imgElement.setAttribute('src', imgURL)
+                document.body.appendChild(imgElement)
+
+                return imgElement
+            }).then((imgEle) => {
+                console.log(imgEle)
+            })
+
+        })
+        
+    </script>
+<script src="https://cdn.jsdelivr.net/npm/axios@1.3.6/dist/axios.min.js"></script>
+</body>
+</html>
